@@ -1,0 +1,73 @@
+{%extends 'base3.html'%}{%block data%}
+{%if messages%}
+{%for i in messages%}
+<h1 class="{{i.tags}}">{{i}}</h1>
+{%endfor%}
+<hr>
+{%endif%}
+
+
+<section id="contact-us" class="contact-us section">
+    <div class="container">
+            <div class="contact-head">
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="form-main">
+                            <div class="title">
+                                <h4>Login Portal</h4>
+                                <h3>Glad to help you out</h3>
+                            </div>
+                            <form method="POST">
+                                {%csrf_token%}
+                                <div class="row">
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label>Your User Name<span style="color: brown;">*</span></label>
+                                            <td><input type="text" name="uname" id="uname"></td>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Password<span style="color: brown;">*</span></label>
+                                            <td><input type="password" name="upass" id="upass"></td>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group button">
+                                                <button type="submit" class="btn ">Submit</button>
+                                                <button type="reset" class="btn ">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="single-head">
+                            <div class="single-info">
+                                <i class="fa fa-phone"></i>
+                                <h4 class="title">Call us Now:</h4>
+                                <ul>
+                                    <li>+91 9822-605-111</li>
+                                    <li>+91 9811-440-112</li>
+                                </ul>
+                            </div>
+                            <div class="single-info">
+                                <i class="fa fa-envelope-open"></i>
+                                <h4 class="title">Email:</h4>
+                                <ul>
+                                    <li><a href="mailto:info@elibrary.com">info@elibrary.com</a></li>
+                                    <li><a href="mailto:support@yelibrary.com">support@elibrary.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="single-info">
+                                <i class="fa fa-location-arrow"></i>
+                                <h4 class="title">Our Address:</h4>
+                                <ul>
+                                    <li>E-Library, Navi Mumbai, Maharashtra, India,</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+    </div>
+</section>
+{%endblock%}

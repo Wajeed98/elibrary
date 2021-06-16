@@ -1,0 +1,184 @@
+{%load static%}
+
+<header class="header shop">
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- Top Left -->
+                    <div class="top-left">
+                        <ul class="list-main">
+                            <li><i class="ti-headphone-alt"></i> +91 9822-801-582</li>
+                            <li><i class="ti-email"></i> support@elibrary.com</li>
+                        </ul>
+                    </div>
+                    <!--/ End Top Left -->
+                </div>
+                <div class="col-lg-8 col-md-12 col-12">
+                    <!-- Top Right -->
+                    <div class="right-content">
+                        <ul class="list-main">
+                            {%if user.is_authenticated%}
+                            <li><i class="ti-wallet"></i>${{balance}}</li>
+                            <li><i class="ti-user"></i>{{user.first_name|upper}}&nbsp;{{user.last_name|upper}}</li>
+                            <li><i class="ti-user"></i> <a href="{%url 'account:edit'%}">My Account</a></li>
+                            <li><i class="ti-user"></i> <a href="{%url 'account:logout'%}">Logout</a></li>
+                            {%else%}
+                            <li><i class="ti-power-off"></i><a href="{%url 'account:login'%}">Login</a></li>
+                            {%endif%}
+                        </ul>
+                    </div>
+                    <!-- End Top Right -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Topbar -->
+    <div class="middle-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index.html"><img src="{%static 'images/logo11.png'%}" alt="logo"></a>
+                    </div>
+                    <!--/ End Logo -->
+                    <!-- Search Form -->
+                    <div class="search-top">
+                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                        <!-- Search Form -->
+                        <div class="search-top">
+                            <form class="search-form">
+                                <input type="text" placeholder="Search here..." name="search">
+                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                        <!--/ End Search Form -->
+                    </div>
+                    <!--/ End Search Form -->
+                    <div class="mobile-nav"></div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div class="search-bar-top">
+                        <div class="search-bar">
+                            <form method="POST">
+                                {%csrf_token%}
+                                <input name="srch" placeholder="Search Books Here....." type="search">
+                                <button type="submit" class="btnn"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="right-bar">
+                        <!-- Search Form -->
+                        {%if user.is_authenticated%}
+                        <div class="sinlge-bar shopping">
+                            <a href="{%url 'cart:List'%}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{cart_value}}</span></a>
+                            <a href="{%url 'order:List'%}" class="single-icon"><i class="ti-wallet"></i> <span class="total-count">{{order_value}}</span></a>
+                            <!-- Shopping Item -->
+                            <!-- Shopping Item -->
+                
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    <span>{{cart_value}} Items</span>
+                                    <a href="">View Cart</a>
+                                </div>
+                                <ul class="shopping-list">
+                                    {%for i in clist%}
+                                    <li>
+                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href=""><img src="{{i.book.image}}" alt="#"></a>
+                                        <h4><a href="">{{i.book}}</a></h4>
+                                        <p class="quantity">{{i.quantity}} x<span class="amount">${{i.book.price}}/-</span></p>
+                                    </li>
+                                    {%endfor%}
+                                    {%for i in clist_trend%}
+                                    <li>
+                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img src="{{i.book.name.image}}" alt="#"></a>
+                                        <h4><a href="#">{{i.book.name}}</a></h4>
+                                        <p class="quantity">{{i.quantity}} x<span class="amount">${{i.book.name.price}}/-</span></p>
+                                    </li>
+                                    {%endfor%}
+                                    {%for i in clist_dis%}
+                                    <li>
+                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img src="{{i.book.name.image}}" alt="#"></a>
+                                        <h4><a href="#">{{i.book.name}}</a></h4>
+                                        <p class="quantity">{{i.quantity}} x<span class="amount">${{i.book.dis_price}}/-</span></p>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        <span class="total-amount">$ {{bal}} /-</span>
+                                    </div>
+                                    <a href="{%url 'cart:List'%}" class="btn animate">Checkout</a>
+                                </div>
+                            </div>
+                            <!--/ End Shopping Item -->
+                        {%else%}
+                        <div class="sinlge-bar">
+                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="sinlge-bar">
+                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                        </div>
+                        {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Inner -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="all-category">
+                            <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>GENRES</h3>
+                            <ul class="main-category">
+                                {%for i in cl%}
+                                <li><a href="{%url 'book:sortByID' i.id%}">{{i.name}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </li>
+                                {%endfor%}
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-12">
+                        <div class="menu-area">
+                            <!-- Main Menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">	
+                                    <div class="nav-inner">	
+                                        <ul class="nav main-menu menu navbar-nav">
+                                                <li class=""><a href="/">Home</a></li>	
+                                                <li><a href="#allbooks">Books<i class="ti-angle-down"></i></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="#allbooks">All Books</a></li>
+                                                        <li><a href="#trend">Trending Books</a></li>
+                                                        <li><a href="#discount">Books on Discount</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class=""><a href="{%url 'cart:List'%}">My Carts</a></li>	
+                                                <li class=""><a href="{%url 'order:List'%}">My Orders</a></li>
+                                                <li><a href="{%url 'account:register'%}">Register</a></li>
+                                                <li><a href="#">Contact Us</a></li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!--/ End Main Menu -->	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>

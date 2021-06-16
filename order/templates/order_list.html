@@ -1,0 +1,43 @@
+{%extends 'base3.html'%} {%block data%}
+
+<!-- Shopping Cart -->
+<form method="POST">
+    {%csrf_token%}
+    <div class="shopping-cart section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Shopping Summery -->
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>ID</th>
+                                <th>TOTAL BILL</th>
+                                <th>ORDER DATE</th>
+                                <th class="text-center">STATUS</th>
+                                <th class="text-center">DELETE<i class="ti-trash remove-icon"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for i in ord_list%}
+                            <tr>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name"><a href="">{{i.id}}</a></p>
+                                </td>
+                                <td class="price" data-title="Price"><span>${{i.totalBill}} </span></td>
+                                <td class="total-amount" data-title="Total"><span>{{i.orderDate}}</span></td>
+                                <td class="total-amount" data-title="Total"><span>{{i.status}}</span></td>
+                                <td class="action" data-title="Remove"><a href="{%url 'order:deleteOrd' i.id%}"><i class="ti-trash remove-icon"></i></a></td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                    <!--/ End Shopping Summery -->
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</form>
+
+{%endblock%}

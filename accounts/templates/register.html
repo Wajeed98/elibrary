@@ -1,0 +1,108 @@
+{%extends 'base3.html'%}{%block data%}
+
+{%for i in messages%}
+<h1 class="{{i.tags}}">{{i}}</h1>
+{%endfor%}
+<hr>
+
+<section id="contact-us" class="contact-us section">
+    <div class="container">
+            <div class="contact-head">
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="form-main">
+                            <div class="title">
+                                <h3>Glad to help you out</h3>
+                            </div>
+                            <form method="POST">
+                                {%csrf_token%}
+                                <div class="row">
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label>Your First Name<span style="color: brown;">*</span></label>
+                                            {{form.first_name}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Last Name<span style="color: brown;">*</span></label>
+                                            {{form.last_name}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Email<span style="color: brown;">*</span></label>
+                                            {{form.email}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Contact No.<span style="color: brown;">*</span></label>
+                                            {{form.contact}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Gender<span style="color: brown;">*</span></label>
+                                            {{form.gender}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your User Name<span style="color: brown;">*</span></label>
+                                            {{form.username}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Password<span style="color: brown;">*</span></label>
+                                            {{form.password1}}
+                                            <p style="color: brown;">Your password can’t be too similar to your other personal information.</p>
+                                            <p style="color: brown;">Your password must contain at least 8 characters.</p>
+                                            <p style="color: brown;">Your password can’t be a commonly used password.</p>
+                                            <p style="color: brown;">Your password can’t be entirely numeric.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Confirm Password<span style="color: brown;">*</span></label>
+                                            {{form.password2}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Your Balance($)<span style="color: brown;">*</span></label>
+                                            {{form.balance}}
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group button">
+                                                <button type="submit" class="btn ">Submit</button>
+                                                <button type="reset" class="btn ">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="single-head">
+                            <div class="single-info">
+                                <i class="fa fa-phone"></i>
+                                <h4 class="title">Call us Now:</h4>
+                                <ul>
+                                    <li>+91 9822-605-111</li>
+                                    <li>+91 9811-440-112</li>
+                                </ul>
+                            </div>
+                            <div class="single-info">
+                                <i class="fa fa-envelope-open"></i>
+                                <h4 class="title">Email:</h4>
+                                <ul>
+                                    <li><a href="mailto:info@elibrary.com">info@elibrary.com</a></li>
+                                    <li><a href="mailto:support@yelibrary.com">support@elibrary.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="single-info">
+                                <i class="fa fa-location-arrow"></i>
+                                <h4 class="title">Our Address:</h4>
+                                <ul>
+                                    <li>E-Library, Navi Mumbai, Maharashtra, India,</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+
+
+
+
+
+{%endblock%}
